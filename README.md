@@ -1,8 +1,5 @@
 # RailNexus — AI-Powered Intelligent Block Planning for Indian Railways
 
-> **SIH 2026 Master Prototype / MVP**  
-> *Note: This is a hackathon prototype using synthetic/demo data and simulation engines. It is not connected to live Indian Railways production systems.*
-
 ---
 
 ## 📌 Executive Summary
