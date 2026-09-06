@@ -55,4 +55,8 @@ export const api = {
 
   // Users
   getUsers: () => fetchJSON('/api/users'),
+  updateUserStatus: (id: string, status: string) => fetchJSON(`/api/users/${id}/status`, { method: 'PUT', body: JSON.stringify({ status }) }),
+
+  // Supervisor Work Status
+  updateWorkStatus: (taskId: string, data: Record<string, unknown>) => fetchJSON(`/api/maintenance/${taskId}/work-status`, { method: 'POST', body: JSON.stringify(data) }),
 };

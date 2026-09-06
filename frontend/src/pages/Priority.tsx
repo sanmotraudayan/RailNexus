@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { api } from '../services/api';
 import { StatusBadge, PageHeader, ProtoLabel } from './Dashboard';
 import { useAuth } from '../context/AuthContext';
+import { useLanguage } from '../context/LanguageContext';
 import { Cpu, AlertTriangle } from 'lucide-react';
 
 interface PriorityResult {
@@ -11,6 +12,7 @@ interface PriorityResult {
 
 export default function Priority() {
   const { user } = useAuth();
+  const { t } = useLanguage();
   const [results, setResults] = useState<PriorityResult[]>([]);
   const [loading, setLoading] = useState(false);
   const [selected, setSelected] = useState<PriorityResult | null>(null);
@@ -29,9 +31,9 @@ export default function Priority() {
       <div className="flex items-center gap-3">
         <button onClick={runAll} disabled={loading}
           className="flex items-center gap-2 px-4 py-2 bg-navy-700 text-white text-[13px] font-medium hover:bg-navy-900 disabled:opacity-50 transition-colors">
-          <Cpu size={16} /> {loading ? 'Analyzing...' : 'Run priority analysis'}
+          <Cpu size={16} /> {loading ? t('Analyzing...') : t('Run priority analysis')}
         </button>
-        {results.length > 0 && <span className="text-[12px] text-grey-600">{results.length} tasks analyzed</span>}
+        {results.length > 0 && <span className="text-[12px] text-grey-600">{results.length} {t('tasks analyzed')}</span>}
       </div>
 
       {results.length > 0 && (
@@ -39,10 +41,10 @@ export default function Priority() {
           <table className="w-full text-[13px]">
             <thead className="sticky top-0">
               <tr className="bg-navy-900 text-white text-[12px] font-semibold">
-                <th className="px-3 py-2 text-left">Task ID</th>
-                <th className="px-3 py-2 text-left">Priority level</th>
-                <th className="px-3 py-2 text-left">Score</th>
-                <th className="px-3 py-2 text-left">Explanation</th>
+                <th className="px-3 py-2 text-left">{t('Task ID')}</th>
+                <th className="px-3 py-2 text-left">{t('Priority level')}</th>
+                <th className="px-3 py-2 text-left">{t('Score')}</th>
+                <th className="px-3 py-2 text-left">{t('Explanation')}</th>
               </tr>
             </thead>
             <tbody>
@@ -64,19 +66,19 @@ export default function Priority() {
         <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50" onClick={() => setSelected(null)}>
           <div className="bg-white w-full max-w-lg border border-grey-300" onClick={e => e.stopPropagation()}>
             <div className="bg-navy-900 text-white px-4 py-3 flex justify-between items-center">
-              <span className="font-semibold text-[14px]">Priority explanation — {selected.task_id}</span>
+              <span className="font-semibold text-[14px]">{t('Priority explanation')} — {selected.task_id}</span>
               <button onClick={() => setSelected(null)} className="text-white hover:text-grey-300">&times;</button>
             </div>
             <div className="p-4 space-y-3 text-[13px]">
               <div className="flex items-center gap-2 mb-2">
                 <StatusBadge status={selected.priority_level} />
-                <span className="font-bold" style={{ fontVariantNumeric: 'tabular-nums' }}>Score: {selected.priority_score}/100</span>
+                <span className="font-bold" style={{ fontVariantNumeric: 'tabular-nums' }}>{t('Score')}: {selected.priority_score}/100</span>
               </div>
               <div className="flex items-start gap-2 bg-info-100 p-3 border border-info-700">
                 <AlertTriangle size={16} className="text-info-700 mt-0.5 flex-shrink-0" />
                 <p>{selected.priority_reason}</p>
               </div>
-              <p className="text-[12px] font-semibold text-grey-600 uppercase mt-3">Contributing factors</p>
+              <p className="text-[12px] font-semibold text-grey-600 uppercase mt-3">{t('Contributing factors')}</p>
               <div className="space-y-2">
                 {Object.entries(selected.contributing_factors || {}).map(([key, f]) => (
                   <div key={key} className="flex items-center justify-between bg-grey-50 px-3 py-2 border border-grey-100">

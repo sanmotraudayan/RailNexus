@@ -1,14 +1,17 @@
 import { useAuth } from '../context/AuthContext';
+import { useLanguage } from '../context/LanguageContext';
 import { AlertTriangle, Clock, CheckCircle, Activity, Bell, ArrowUpRight } from 'lucide-react';
+import RelationshipGraph from '../components/visualization/RelationshipGraph';
 
 // KPI Card component
 function KPICard({ label, value, color = 'text-navy-900', icon: Icon }: {
   label: string; value: string | number; color?: string; icon?: React.ComponentType<{ size?: number; className?: string }>;
 }) {
+  const { t } = useLanguage();
   return (
     <div className="bg-white p-4 border border-grey-300 flex flex-col justify-between h-[100px]">
       <div className="flex items-center justify-between">
-        <span className="text-[11px] text-grey-600 uppercase font-semibold tracking-wide">{label}</span>
+        <span className="text-[11px] text-grey-600 uppercase font-semibold tracking-wide">{t(label)}</span>
         {Icon && <Icon size={16} className="text-grey-600" />}
       </div>
       <span className={`text-[28px] font-bold ${color}`} style={{ fontVariantNumeric: 'tabular-nums' }}>{value}</span>
@@ -93,6 +96,8 @@ function PlannerDashboard() {
           </div>
         </div>
       </div>
+
+      <RelationshipGraph />
 
       <div className="bg-white border border-grey-300">
         <div className="bg-navy-900 text-white px-4 py-2 text-[13px] font-semibold">Recent notifications</div>
@@ -183,13 +188,14 @@ function AdminDashboard() {
 }
 
 function PageHeader({ title, subtitle, role }: { title: string; subtitle: string; role: string }) {
+  const { t } = useLanguage();
   return (
     <div className="flex justify-between items-center pb-4 border-b border-grey-300">
       <div>
-        <h2 className="text-[20px] font-semibold text-navy-900">{title}</h2>
-        <p className="text-[13px] text-grey-600 mt-0.5">{subtitle}</p>
+        <h2 className="text-[20px] font-semibold text-navy-900">{t(title)}</h2>
+        <p className="text-[13px] text-grey-600 mt-0.5">{t(subtitle)}</p>
       </div>
-      <div className="text-[11px] text-grey-600">Role: <span className="font-bold text-navy-900">{role}</span></div>
+      <div className="text-[11px] text-grey-600">{t('Role') || 'Role'}: <span className="font-bold text-navy-900">{t(role)}</span></div>
     </div>
   );
 }
@@ -210,9 +216,10 @@ function NotifRow({ icon: Icon, color, title, desc, time }: {
 }
 
 function ProtoLabel() {
+  const { t } = useLanguage();
   return (
     <p className="text-[11px] text-grey-600 text-center mt-4 border-t border-grey-100 pt-3">
-      Prototype Simulation — All data is synthetic
+      {t('Prototype Simulation — All data is synthetic') || 'Prototype Simulation — All data is synthetic'}
     </p>
   );
 }

@@ -2900,6 +2900,36 @@
   ],
   "audit_logs": [
     {
+      "id": "AUD-0005",
+      "timestamp": "2026-09-07 02:10:04",
+      "user": "Planner",
+      "role": "Planner",
+      "action": "WHAT_IF_SIMULATION",
+      "module": "WHAT_IF",
+      "entity_id": "new_critical_defect",
+      "description": "Executed what-if simulation for event: new_critical_defect"
+    },
+    {
+      "id": "AUD-0004",
+      "timestamp": "2026-09-07 01:36:48",
+      "user": "Optimization Engine",
+      "role": "SYSTEM",
+      "action": "OPTIMIZATION_RUN",
+      "module": "OPTIMIZATION",
+      "entity_id": "ALL",
+      "description": "Ran optimization for weekly plan: 11 tasks scheduled"
+    },
+    {
+      "id": "AUD-0003",
+      "timestamp": "2026-09-07 01:36:48",
+      "user": "Optimization Engine",
+      "role": "SYSTEM",
+      "action": "OPTIMIZATION_RUN",
+      "module": "OPTIMIZATION",
+      "entity_id": "ALL",
+      "description": "Ran optimization for weekly plan: 11 tasks scheduled"
+    },
+    {
       "id": "aud-1",
       "user": "Rajesh Sharma",
       "role": "Railway Planner",
@@ -2917,5 +2947,304 @@
       "description": "Created new critical USFD defect task TSK-0012.",
       "timestamp": "2026-09-06 17:00:45"
     }
-  ]
+  ],
+  "plans": [
+    {
+      "id": "PLN-001",
+      "block_id": "BLK-003",
+      "corridor": "NDLS-CNB",
+      "date": "2026-09-07",
+      "departments": [
+        "Engineering",
+        "S&T"
+      ],
+      "explanation": "Co-located Engineering and S&T tasks in shared possession window.",
+      "status": "AI_RECOMMENDED"
+    },
+    {
+      "id": "PLN-002",
+      "block_id": "BLK-008",
+      "corridor": "HWH-KGP",
+      "date": "2026-09-08",
+      "departments": [
+        "Traction"
+      ],
+      "explanation": "OHE maintenance scheduled during low-traffic window.",
+      "status": "AI_RECOMMENDED"
+    },
+    {
+      "id": "PLN-003",
+      "block_id": "BLK-012",
+      "corridor": "CSMT-PUNE",
+      "date": "2026-09-09",
+      "departments": [
+        "Engineering",
+        "Traction",
+        "S&T"
+      ],
+      "explanation": "All three departments co-located for maximum block utilization.",
+      "status": "PENDING_APPROVAL"
+    },
+    {
+      "id": "PLN-004",
+      "block_id": "BLK-002",
+      "corridor": "HWH-KGP (Howrah - Kharagpur)",
+      "date": "2026-09-06",
+      "departments": [
+        "Traction"
+      ],
+      "explanation": "Traction maintenance scheduled in available block window on HWH-KGP (Howrah - Kharagpur).",
+      "status": "AI_RECOMMENDED",
+      "tasks": [
+        {
+          "task_id": "TSK-0005",
+          "task_title": "Substation Breaker Servicing at KM 88+482m",
+          "department": "Traction",
+          "block_id": "BLK-002",
+          "corridor": "HWH-KGP (Howrah - Kharagpur)",
+          "date": "2026-09-06",
+          "start": "01:00",
+          "end": "03:00",
+          "duration": 2.5,
+          "priority_level": "CRITICAL",
+          "train_conflict": true,
+          "collocated": false,
+          "collocated_with": []
+        }
+      ]
+    },
+    {
+      "id": "PLN-005",
+      "block_id": "BLK-017",
+      "corridor": "NDLS-CNB (New Delhi - Kanpur Central)",
+      "date": "2026-09-07",
+      "departments": [
+        "S&T",
+        "Traction"
+      ],
+      "explanation": "Tasks from S&T, Traction were co-located into a shared possession window on corridor NDLS-CNB (New Delhi - Kanpur Central) because they target the same section and their combined duration (3.5h) fits within the 4.0h block window.",
+      "status": "AI_RECOMMENDED",
+      "tasks": [
+        {
+          "task_id": "TSK-0024",
+          "task_title": "Signal LED Aspect Replacement at KM 143+309m",
+          "department": "S&T",
+          "block_id": "BLK-017",
+          "corridor": "NDLS-CNB (New Delhi - Kanpur Central)",
+          "date": "2026-09-07",
+          "start": "13:00",
+          "end": "14:00",
+          "duration": 1.0,
+          "priority_level": "CRITICAL",
+          "train_conflict": true,
+          "collocated": false,
+          "collocated_with": []
+        },
+        {
+          "task_id": "TSK-0019",
+          "task_title": "Substation Breaker Servicing at KM 352+597m",
+          "department": "Traction",
+          "block_id": "BLK-017",
+          "corridor": "NDLS-CNB (New Delhi - Kanpur Central)",
+          "date": "2026-09-07",
+          "start": "14:00",
+          "end": "16:00",
+          "duration": 2.5,
+          "priority_level": "CRITICAL",
+          "train_conflict": true,
+          "collocated": true,
+          "collocated_with": [
+            "S&T"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "PLN-006",
+      "block_id": "BLK-020",
+      "corridor": "HWH-KGP (Howrah - Kharagpur)",
+      "date": "2026-09-07",
+      "departments": [
+        "Engineering"
+      ],
+      "explanation": "Engineering maintenance scheduled in available block window on HWH-KGP (Howrah - Kharagpur).",
+      "status": "AI_RECOMMENDED",
+      "tasks": [
+        {
+          "task_id": "TSK-0041",
+          "task_title": "Rail Defect Ultrasonic Flaw Detection (USFD) at KM 246+488m",
+          "department": "Engineering",
+          "block_id": "BLK-020",
+          "corridor": "HWH-KGP (Howrah - Kharagpur)",
+          "date": "2026-09-07",
+          "start": "13:00",
+          "end": "16:00",
+          "duration": 3.0,
+          "priority_level": "CRITICAL",
+          "train_conflict": true,
+          "collocated": false,
+          "collocated_with": []
+        }
+      ]
+    },
+    {
+      "id": "PLN-007",
+      "block_id": "BLK-007",
+      "corridor": "HWH-KGP (Howrah - Kharagpur)",
+      "date": "2026-09-08",
+      "departments": [
+        "Engineering"
+      ],
+      "explanation": "Engineering maintenance scheduled in available block window on HWH-KGP (Howrah - Kharagpur).",
+      "status": "AI_RECOMMENDED",
+      "tasks": [
+        {
+          "task_id": "TSK-0055",
+          "task_title": "Joint De-stressing & Fastener Tightening at KM 356+858m",
+          "department": "Engineering",
+          "block_id": "BLK-007",
+          "corridor": "HWH-KGP (Howrah - Kharagpur)",
+          "date": "2026-09-08",
+          "start": "10:00",
+          "end": "12:00",
+          "duration": 2.0,
+          "priority_level": "CRITICAL",
+          "train_conflict": true,
+          "collocated": false,
+          "collocated_with": []
+        }
+      ]
+    },
+    {
+      "id": "PLN-008",
+      "block_id": "BLK-005",
+      "corridor": "NDLS-CNB (New Delhi - Kanpur Central)",
+      "date": "2026-09-08",
+      "departments": [
+        "Engineering"
+      ],
+      "explanation": "Engineering maintenance scheduled in available block window on NDLS-CNB (New Delhi - Kanpur Central).",
+      "status": "AI_RECOMMENDED",
+      "tasks": [
+        {
+          "task_id": "TSK-0020",
+          "task_title": "Rail Defect Ultrasonic Flaw Detection (USFD) at KM 118+771m",
+          "department": "Engineering",
+          "block_id": "BLK-005",
+          "corridor": "NDLS-CNB (New Delhi - Kanpur Central)",
+          "date": "2026-09-08",
+          "start": "23:00",
+          "end": "26:00",
+          "duration": 3.0,
+          "priority_level": "CRITICAL",
+          "train_conflict": true,
+          "collocated": false,
+          "collocated_with": []
+        }
+      ]
+    },
+    {
+      "id": "PLN-009",
+      "block_id": "BLK-006",
+      "corridor": "NDLS-CNB (New Delhi - Kanpur Central)",
+      "date": "2026-09-09",
+      "departments": [
+        "S&T",
+        "Traction"
+      ],
+      "explanation": "Tasks from S&T, Traction were co-located into a shared possession window on corridor NDLS-CNB (New Delhi - Kanpur Central) because they target the same section and their combined duration (3.5h) fits within the 4.0h block window.",
+      "status": "AI_RECOMMENDED",
+      "tasks": [
+        {
+          "task_id": "TSK-0007",
+          "task_title": "Substation Breaker Servicing at KM 53+849m",
+          "department": "Traction",
+          "block_id": "BLK-006",
+          "corridor": "NDLS-CNB (New Delhi - Kanpur Central)",
+          "date": "2026-09-09",
+          "start": "13:00",
+          "end": "15:00",
+          "duration": 2.5,
+          "priority_level": "CRITICAL",
+          "train_conflict": true,
+          "collocated": false,
+          "collocated_with": []
+        },
+        {
+          "task_id": "TSK-0059",
+          "task_title": "Signal LED Aspect Replacement at KM 256+318m",
+          "department": "S&T",
+          "block_id": "BLK-006",
+          "corridor": "NDLS-CNB (New Delhi - Kanpur Central)",
+          "date": "2026-09-09",
+          "start": "15:00",
+          "end": "16:00",
+          "duration": 1.0,
+          "priority_level": "CRITICAL",
+          "train_conflict": true,
+          "collocated": true,
+          "collocated_with": [
+            "Traction"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "PLN-010",
+      "block_id": "BLK-013",
+      "corridor": "HWH-KGP (Howrah - Kharagpur)",
+      "date": "2026-09-08",
+      "departments": [
+        "S&T"
+      ],
+      "explanation": "S&T maintenance scheduled in available block window on HWH-KGP (Howrah - Kharagpur).",
+      "status": "AI_RECOMMENDED",
+      "tasks": [
+        {
+          "task_id": "TSK-0006",
+          "task_title": "Axle Counter Reset System Calibration at KM 244+423m",
+          "department": "S&T",
+          "block_id": "BLK-013",
+          "corridor": "HWH-KGP (Howrah - Kharagpur)",
+          "date": "2026-09-08",
+          "start": "13:00",
+          "end": "15:00",
+          "duration": 2.0,
+          "priority_level": "CRITICAL",
+          "train_conflict": true,
+          "collocated": false,
+          "collocated_with": []
+        }
+      ]
+    },
+    {
+      "id": "PLN-011",
+      "block_id": "BLK-004",
+      "corridor": "CSMT-PUNE (Mumbai CSMT - Pune)",
+      "date": "2026-09-06",
+      "departments": [
+        "Engineering"
+      ],
+      "explanation": "Engineering maintenance scheduled in available block window on CSMT-PUNE (Mumbai CSMT - Pune).",
+      "status": "AI_RECOMMENDED",
+      "tasks": [
+        {
+          "task_id": "TSK-0012",
+          "task_title": "Rail Defect Ultrasonic Flaw Detection (USFD) at KM 80+621m",
+          "department": "Engineering",
+          "block_id": "BLK-004",
+          "corridor": "CSMT-PUNE (Mumbai CSMT - Pune)",
+          "date": "2026-09-06",
+          "start": "13:00",
+          "end": "16:00",
+          "duration": 3.0,
+          "priority_level": "CRITICAL",
+          "train_conflict": true,
+          "collocated": false,
+          "collocated_with": []
+        }
+      ]
+    }
+  ],
+  "approvals": []
 }

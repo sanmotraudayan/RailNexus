@@ -2,12 +2,14 @@ import { useState, useEffect } from 'react';
 import { api } from '../services/api';
 import { PageHeader, ProtoLabel } from './Dashboard';
 import { useAuth } from '../context/AuthContext';
+import { useLanguage } from '../context/LanguageContext';
 import { AlertTriangle, Activity, CheckCircle, Info } from 'lucide-react';
 
 interface Notif { id: string; title: string; message: string; type: string; timestamp: string; read: boolean; }
 
 export default function Notifications() {
   const { user } = useAuth();
+  const { t } = useLanguage();
   const [notifs, setNotifs] = useState<Notif[]>([]);
 
   useEffect(() => {
@@ -41,7 +43,7 @@ export default function Notifications() {
             </div>
           );
         })}
-        {notifs.length === 0 && <p className="text-[13px] text-grey-600 text-center py-8">No notifications</p>}
+        {notifs.length === 0 && <p className="text-[13px] text-grey-600 text-center py-8">{t('No notifications')}</p>}
       </div>
       <ProtoLabel />
     </div>

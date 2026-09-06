@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Activity } from 'lucide-react';
+import { useLanguage } from '../../context/LanguageContext';
 
 const SYSTEM_UPDATES = [
   'LIVE SYSTEM SIMULATION: NDLS-CNB Corridor track health monitoring active.',
@@ -11,6 +12,7 @@ const SYSTEM_UPDATES = [
 
 const UtilityBar: React.FC = () => {
   const [updateIdx, setUpdateIdx] = useState(0);
+  const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -22,8 +24,8 @@ const UtilityBar: React.FC = () => {
   return (
     <div className="bg-ink-900 text-white h-8 flex items-center justify-between px-6 text-[11px] w-full">
       <div className="flex items-center space-x-4">
-        <button className="hover:underline focus:ring-2 focus:ring-blue-600 focus:outline-none">Skip to main content</button>
-        <button className="hover:underline focus:ring-2 focus:ring-blue-600 focus:outline-none">Screen Reader Access</button>
+        <button className="hover:underline focus:ring-2 focus:ring-blue-600 focus:outline-none">{t('Skip to main content')}</button>
+        <button className="hover:underline focus:ring-2 focus:ring-blue-600 focus:outline-none">{t('Screen Reader Access')}</button>
       </div>
 
       {/* Live Simulation Operational Ticker */}
@@ -40,8 +42,13 @@ const UtilityBar: React.FC = () => {
           <button className="hover:underline focus:ring-2 focus:ring-blue-600 focus:outline-none" aria-label="Normal font size">A</button>
           <button className="hover:underline focus:ring-2 focus:ring-blue-600 focus:outline-none" aria-label="Increase font size">A+</button>
         </div>
-        <button className="hover:underline focus:ring-2 focus:ring-blue-600 focus:outline-none">High Contrast</button>
-        <select className="bg-ink-900 text-white border-none focus:ring-2 focus:ring-blue-600 text-[11px] cursor-pointer" aria-label="Language selection">
+        <button className="hover:underline focus:ring-2 focus:ring-blue-600 focus:outline-none">{t('High Contrast')}</button>
+        <select
+          value={language}
+          onChange={(e) => setLanguage(e.target.value as 'en' | 'hi')}
+          className="bg-ink-900 text-white border border-grey-600 px-1 py-0.5 focus:ring-2 focus:ring-blue-600 text-[11px] cursor-pointer font-bold"
+          aria-label="Language selection"
+        >
           <option value="en">EN</option>
           <option value="hi">हिंदी</option>
         </select>

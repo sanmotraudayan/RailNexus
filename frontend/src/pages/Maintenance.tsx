@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { useLanguage } from '../context/LanguageContext';
 import { api } from '../services/api';
 import { StatusBadge, PageHeader, ProtoLabel } from './Dashboard';
 import { Search, Eye, AlertTriangle, Plus, CheckCircle2, X } from 'lucide-react';
@@ -13,6 +14,7 @@ interface Task {
 
 export default function Maintenance() {
   const { user } = useAuth();
+  const { t } = useLanguage();
   const [tasks, setTasks] = useState<Task[]>([]);
   const [search, setSearch] = useState('');
   const [filterDept, setFilterDept] = useState('');
@@ -52,20 +54,29 @@ export default function Maintenance() {
       });
   }, [user]);
 
-  const handleCreateBlockRequest = (e: React.FormEvent) => {
+  const [submitting, setSubmitting] = useState(false);
+  const [formError, setFormError] = useState('');
+
+  const handleCreateBlockRequest = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!newTitle || !newLocation) return;
+    if (!newTitle.trim() || !newLocation.trim()) {
+      setFormError('Work description and Location marker are required.');
+      return;
+    }
+
+    setFormError('');
+    setSubmitting(true);
 
     // Calculate synthetic score based on inputs
     const baseScore = newUrgency === 'IMMEDIATE' ? 88 : newUrgency === 'WITHIN_24H' ? 74 : 58;
     const priorityLevel = baseScore >= 80 ? 'CRITICAL' : baseScore >= 65 ? 'HIGH' : 'MEDIUM';
 
-    const newTask: Task = {
-      id: `REQ-${Math.floor(1000 + Math.random() * 9000)}`,
-      title: newTitle,
+    const newTaskData = {
+      id: `TSK-${Math.floor(1000 + Math.random() * 9000)}`,
+      title: newTitle.trim(),
       department: userDept,
       corridor: newCorridor,
-      location: newLocation,
+      location: newLocation.trim(),
       severity: newSeverity,
       criticality: newCriticality,
       urgency: newUrgency,
@@ -75,19 +86,35 @@ export default function Maintenance() {
       priority_explanation: `Submitted by ${user?.name || 'Department Officer'} (${userDept}). Urgent maintenance window requested at ${newLocation}.`,
       status: 'PENDING_APPROVAL',
       deadline: '2026-09-08',
-      asset_id: newAssetId || `AST-${userDept.substring(0, 3).toUpperCase()}-99`
+      asset_id: newAssetId.trim() || `AST-${userDept.substring(0, 3).toUpperCase()}-99`,
+      submitted_by: user?.name || 'Officer'
     };
 
-    setTasks(prev => [newTask, ...prev]);
-    setSubmitSuccess(true);
-    setTimeout(() => {
-      setSubmitSuccess(false);
-      setShowCreateModal(false);
-      // Reset form
-      setNewTitle('');
-      setNewLocation('');
-      setNewAssetId('');
-    }, 1200);
+    try {
+      const created = await api.createMaintenance(newTaskData);
+      setTasks(prev => [created, ...prev]);
+      setSubmitSuccess(true);
+      setTimeout(() => {
+        setSubmitSuccess(false);
+        setShowCreateModal(false);
+        setNewTitle('');
+        setNewLocation('');
+        setNewAssetId('');
+        setSubmitting(false);
+      }, 1000);
+    } catch {
+      setFormError('Unable to connect to backend server. Saved locally for prototype session.');
+      setTasks(prev => [newTaskData, ...prev]);
+      setSubmitSuccess(true);
+      setTimeout(() => {
+        setSubmitSuccess(false);
+        setShowCreateModal(false);
+        setNewTitle('');
+        setNewLocation('');
+        setNewAssetId('');
+        setSubmitting(false);
+      }, 1000);
+    }
   };
 
   const filtered = tasks.filter(t => {
@@ -106,7 +133,7 @@ export default function Maintenance() {
             onClick={() => setShowCreateModal(true)}
             className="flex items-center gap-1.5 bg-saffron-500 hover:bg-saffron-600 text-ink-900 text-[13px] font-bold px-4 py-2 shadow-sm transition-colors cursor-pointer"
           >
-            <Plus size={16} /> Request New Block ({userDept})
+            <Plus size={16} /> {t('Request New Block')} ({userDept})
           </button>
         )}
       </div>
@@ -115,23 +142,23 @@ export default function Maintenance() {
       <div className="flex items-center gap-3 flex-wrap">
         <div className="relative flex-1 max-w-xs">
           <Search size={16} className="absolute left-3 top-2.5 text-grey-600" />
-          <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search tasks..."
+          <input value={search} onChange={e => setSearch(e.target.value)} placeholder={t('Search tasks...')}
             className="w-full pl-9 pr-3 py-2 border border-grey-300 text-[13px] focus:outline-none focus:ring-2 focus:ring-blue-600" />
         </div>
         <select value={filterDept} onChange={e => setFilterDept(e.target.value)}
           className="border border-grey-300 px-3 py-2 text-[13px] focus:outline-none focus:ring-2 focus:ring-blue-600">
-          <option value="">All departments</option>
+          <option value="">{t('All departments')}</option>
           <option value="Engineering">Engineering (TMS)</option>
           <option value="Traction">Traction (TDMS)</option>
           <option value="S&T">S&T (SMS)</option>
         </select>
         <select value={filterPriority} onChange={e => setFilterPriority(e.target.value)}
           className="border border-grey-300 px-3 py-2 text-[13px] focus:outline-none focus:ring-2 focus:ring-blue-600">
-          <option value="">All priorities</option>
-          <option value="CRITICAL">Critical</option>
-          <option value="HIGH">High</option>
-          <option value="MEDIUM">Medium</option>
-          <option value="LOW">Low</option>
+          <option value="">{t('All priorities')}</option>
+          <option value="CRITICAL">{t('CRITICAL')}</option>
+          <option value="HIGH">{t('HIGH')}</option>
+          <option value="MEDIUM">{t('MEDIUM')}</option>
+          <option value="LOW">{t('LOW')}</option>
         </select>
       </div>
 
@@ -140,21 +167,21 @@ export default function Maintenance() {
         <table className="w-full text-[13px] text-left">
           <thead className="bg-grey-100 border-b border-grey-300 font-semibold text-navy-900">
             <tr>
-              <th className="px-4 py-2.5">ID</th>
-              <th className="px-4 py-2.5">Title</th>
-              <th className="px-4 py-2.5">Department</th>
-              <th className="px-4 py-2.5">Corridor / Location</th>
-              <th className="px-4 py-2.5">Priority Score</th>
-              <th className="px-4 py-2.5">Duration</th>
-              <th className="px-4 py-2.5">Status</th>
-              <th className="px-4 py-2.5">Actions</th>
+              <th className="px-4 py-2.5">{t('ID')}</th>
+              <th className="px-4 py-2.5">{t('Title')}</th>
+              <th className="px-4 py-2.5">{t('Department')}</th>
+              <th className="px-4 py-2.5">{t('Corridor / Location')}</th>
+              <th className="px-4 py-2.5">{t('Priority Score')}</th>
+              <th className="px-4 py-2.5">{t('Duration')}</th>
+              <th className="px-4 py-2.5">{t('Status')}</th>
+              <th className="px-4 py-2.5">{t('Actions')}</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-grey-300">
             {loading ? (
-              <tr><td colSpan={8} className="px-4 py-8 text-center text-grey-600">Loading maintenance requests...</td></tr>
+              <tr><td colSpan={8} className="px-4 py-8 text-center text-grey-600">{t('Loading maintenance requests...')}</td></tr>
             ) : filtered.length === 0 ? (
-              <tr><td colSpan={8} className="px-4 py-8 text-center text-grey-600">No maintenance requests found.</td></tr>
+              <tr><td colSpan={8} className="px-4 py-8 text-center text-grey-600">{t('No maintenance requests found.')}</td></tr>
             ) : filtered.map(t => (
               <tr key={t.id} className="hover:bg-grey-100">
                 <td className="px-4 py-2.5 font-mono text-[12px] font-bold text-navy-900">{t.id}</td>
@@ -179,7 +206,7 @@ export default function Maintenance() {
                 <td className="px-4 py-2.5">
                   <button onClick={() => setSelected(t)}
                     className="flex items-center gap-1 text-[12px] font-bold text-navy-900 hover:text-blue-600">
-                    <Eye size={14} /> Detail
+                    <Eye size={14} /> {t('Detail')}
                   </button>
                 </td>
               </tr>
@@ -210,6 +237,13 @@ export default function Maintenance() {
               </div>
             ) : (
               <form onSubmit={handleCreateBlockRequest} className="p-4 space-y-3.5 text-[13px]">
+                {formError && (
+                  <div className="p-2.5 bg-amber-50 border border-amber-300 text-amber-900 text-[12px] font-semibold flex items-center justify-between">
+                    <span>{formError}</span>
+                    <button type="button" onClick={() => setFormError('')} className="font-bold text-amber-900">&times;</button>
+                  </div>
+                )}
+
                 <div>
                   <label className="block font-semibold text-navy-900 mb-1">Work Description / Title *</label>
                   <input
@@ -217,7 +251,7 @@ export default function Maintenance() {
                     required
                     placeholder="e.g. Deep Screening of Track / OHE Cantilever Inspection"
                     value={newTitle}
-                    onChange={e => setNewTitle(e.target.value)}
+                    onChange={e => { setNewTitle(e.target.value); if (formError) setFormError(''); }}
                     className="w-full border border-grey-300 px-3 py-2 focus:ring-2 focus:ring-blue-600 focus:outline-none"
                   />
                 </div>
@@ -242,7 +276,7 @@ export default function Maintenance() {
                       required
                       placeholder="e.g. Km 142/8 - 144/2"
                       value={newLocation}
-                      onChange={e => setNewLocation(e.target.value)}
+                      onChange={e => { setNewLocation(e.target.value); if (formError) setFormError(''); }}
                       className="w-full border border-grey-300 px-3 py-2 focus:ring-2 focus:ring-blue-600 focus:outline-none"
                     />
                   </div>
@@ -301,16 +335,18 @@ export default function Maintenance() {
                 <div className="pt-2 flex justify-end gap-2 border-t border-grey-200">
                   <button
                     type="button"
+                    disabled={submitting}
                     onClick={() => setShowCreateModal(false)}
-                    className="px-4 py-2 bg-grey-200 hover:bg-grey-300 text-navy-900 font-semibold text-[13px]"
+                    className="px-4 py-2 bg-grey-200 hover:bg-grey-300 text-navy-900 font-semibold text-[13px] disabled:opacity-50"
                   >
-                    Cancel
+                    {t('Cancel')}
                   </button>
                   <button
                     type="submit"
-                    className="px-5 py-2 bg-navy-900 hover:bg-navy-800 text-white font-bold text-[13px] shadow-sm"
+                    disabled={submitting}
+                    className="px-5 py-2 bg-navy-900 hover:bg-navy-800 text-white font-bold text-[13px] shadow-sm disabled:opacity-50 flex items-center gap-2"
                   >
-                    Submit Requisition
+                    {submitting ? t('Submitting...') : t('Submit Requisition')}
                   </button>
                 </div>
               </form>
@@ -351,7 +387,7 @@ export default function Maintenance() {
             <div className="flex justify-end pt-2">
               <button onClick={() => setSelected(null)}
                 className="bg-navy-900 text-white text-[13px] font-bold px-4 py-2 hover:bg-navy-800">
-                Close
+                {t('Close')}
               </button>
             </div>
           </div>

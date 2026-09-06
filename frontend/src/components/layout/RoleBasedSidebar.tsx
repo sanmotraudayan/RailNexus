@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import { useLanguage } from '../../context/LanguageContext';
 import { getSidebarItems } from '../../config/roles';
 import {
   LayoutDashboard, Wrench, Database, Calendar, Train,
@@ -17,6 +18,7 @@ const ICON_MAP: Record<string, React.ComponentType<{ size?: number }>> = {
 
 export default function RoleBasedSidebar() {
   const { user } = useAuth();
+  const { t } = useLanguage();
   if (!user) return null;
 
   const items = getSidebarItems(user.role);
@@ -24,7 +26,7 @@ export default function RoleBasedSidebar() {
   return (
     <aside className="w-[240px] min-w-[240px] bg-white border-r border-grey-300 flex flex-col overflow-y-auto">
       <div className="px-4 py-3 border-b border-grey-300">
-        <p className="text-[11px] text-grey-600 uppercase font-semibold tracking-wide">Navigation</p>
+        <p className="text-[11px] text-grey-600 uppercase font-semibold tracking-wide">{t('Navigation') || 'Navigation'}</p>
       </div>
       <nav className="flex-1 py-1">
         {items.map(item => {
@@ -42,7 +44,7 @@ export default function RoleBasedSidebar() {
               }
             >
               <Icon size={18} />
-              <span>{item.label}</span>
+              <span>{t(item.label)}</span>
             </NavLink>
           );
         })}
