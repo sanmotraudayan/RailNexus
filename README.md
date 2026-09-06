@@ -2,7 +2,7 @@
 
 ---
 
-## 📌 Executive Summary
+## 📌 Summary
 
 **RailNexus** is an enterprise-grade intelligent decision-support platform designed to solve the critical operational bottleneck of railway maintenance block allocation. By harmonizing track maintenance urgency with train schedule impacts, RailNexus optimizes track window allocation to maximize infrastructure safety while minimizing throughput loss and passenger delays.
 
