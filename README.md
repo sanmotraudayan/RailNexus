@@ -43,7 +43,6 @@
 
 - **Frontend**: React 18, TypeScript, Vite, Tailwind CSS (Custom Govt. Operations Theme), Lucide Icons.
 - **Backend**: Python 3.13, FastAPI, Pydantic v2, Uvicorn.
-- **Design System**: Strict Indian Railways Operational Aesthetic (Deep Navy `#0A192F`, Railway Grey `#F4F6F9`, Saffron & Green Accent Stripes).
 
 ---
 
