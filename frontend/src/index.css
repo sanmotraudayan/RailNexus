@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans text-ink-900 bg-grey-50;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+/* Custom utility classes */
+.kpi-value {
+  @apply font-bold text-[28px];
+  font-variant-numeric: tabular-nums;
+}
