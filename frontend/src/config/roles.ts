@@ -18,7 +18,7 @@ export const ROLES: Record<RoleKey, RoleConfig> = {
     label: 'Railway Planner / Operations Manager',
     department: 'Operations',
     permissions: [
-      'view_all_departments', 'compare_requests', 'run_priority', 'run_optimization',
+      'view_all_departments', 'compare_requests', 'view_priority', 'run_priority', 'run_optimization',
       'generate_plans', 'review_conflicts', 'run_whatif', 'approve', 'modify', 'reject',
       'view_kpis', 'view_reports', 'view_audit', 'view_assets', 'view_blocks',
       'view_trains', 'view_maintenance', 'view_notifications',

@@ -16,14 +16,11 @@ export default function BrandingBar() {
   return (
     <div className="bg-white h-[72px] flex items-center justify-between px-6 border-b border-grey-100">
       <div className="flex items-center space-x-3">
-        <img src="/emblem.png" alt="Logo" className="h-12 object-contain" />
+        <img src="/emblem.png" alt="Logo" className="h-16 object-contain mix-blend-multiply" />
       </div>
       
       <div className="flex flex-col items-center justify-center">
         <h1 className="text-navy-900 font-bold text-[18px]">{t('RailNexus — Intelligent Block Planning')}</h1>
-        <span className="text-[11px] font-bold text-warning-700 bg-warning-100 px-2 py-0.5 mt-0.5 border border-warning-700">
-          {t('Prototype Environment — SIH 2026')}
-        </span>
       </div>
 
       <div className="flex items-center space-x-3">

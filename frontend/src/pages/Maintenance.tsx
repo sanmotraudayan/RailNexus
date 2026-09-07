@@ -182,29 +182,29 @@ export default function Maintenance() {
               <tr><td colSpan={8} className="px-4 py-8 text-center text-grey-600">{t('Loading maintenance requests...')}</td></tr>
             ) : filtered.length === 0 ? (
               <tr><td colSpan={8} className="px-4 py-8 text-center text-grey-600">{t('No maintenance requests found.')}</td></tr>
-            ) : filtered.map(t => (
-              <tr key={t.id} className="hover:bg-grey-100">
-                <td className="px-4 py-2.5 font-mono text-[12px] font-bold text-navy-900">{t.id}</td>
-                <td className="px-4 py-2.5 font-semibold text-navy-900">{t.title}</td>
+            ) : filtered.map(task => (
+              <tr key={task.id} className="hover:bg-grey-100">
+                <td className="px-4 py-2.5 font-mono text-[12px] font-bold text-navy-900">{task.id}</td>
+                <td className="px-4 py-2.5 font-semibold text-navy-900">{task.title}</td>
                 <td className="px-4 py-2.5">
                   <span className={`px-2 py-0.5 text-[11px] font-bold border ${
-                    t.department === 'Engineering' ? 'bg-blue-100 text-blue-800 border-blue-300' :
-                    t.department === 'Traction' ? 'bg-amber-100 text-amber-800 border-amber-300' :
+                    task.department === 'Engineering' ? 'bg-blue-100 text-blue-800 border-blue-300' :
+                    task.department === 'Traction' ? 'bg-amber-100 text-amber-800 border-amber-300' :
                     'bg-purple-100 text-purple-800 border-purple-300'
                   }`}>
-                    {t.department}
+                    {task.department}
                   </span>
                 </td>
-                <td className="px-4 py-2.5 text-grey-600">{t.corridor} — {t.location}</td>
+                <td className="px-4 py-2.5 text-grey-600">{task.corridor} — {task.location}</td>
                 <td className="px-4 py-2.5">
-                  <span className={`font-bold ${t.priority_score >= 80 ? 'text-critical-700' : t.priority_score >= 60 ? 'text-warning-700' : 'text-success-700'}`}>
-                    {t.priority_score} ({t.priority_level})
+                  <span className={`font-bold ${task.priority_score >= 80 ? 'text-critical-700' : task.priority_score >= 60 ? 'text-warning-700' : 'text-success-700'}`}>
+                    {task.priority_score} ({task.priority_level})
                   </span>
                 </td>
-                <td className="px-4 py-2.5">{t.duration}h</td>
-                <td className="px-4 py-2.5"><StatusBadge status={t.status} /></td>
+                <td className="px-4 py-2.5">{task.duration}h</td>
+                <td className="px-4 py-2.5"><StatusBadge status={task.status} /></td>
                 <td className="px-4 py-2.5">
-                  <button onClick={() => setSelected(t)}
+                  <button onClick={() => setSelected(task)}
                     className="flex items-center gap-1 text-[12px] font-bold text-navy-900 hover:text-blue-600">
                     <Eye size={14} /> {t('Detail')}
                   </button>

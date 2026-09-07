@@ -25,9 +25,6 @@ export default function Login() {
       <div className="mx-auto w-full max-w-md flex flex-col items-center">
         <h2 className="text-center text-[24px] font-bold text-navy-900">RailNexus</h2>
         <p className="mt-1 text-center text-[13px] text-grey-600">Prototype Authentication Portal — Role-Based Access</p>
-        <div className="mt-3 bg-warning-100 text-warning-700 text-[11px] font-bold px-3 py-1 border border-warning-700">
-          Prototype Environment — SIH 2026 Demonstration
-        </div>
       </div>
 
       <div className="mt-8 mx-auto w-full max-w-md">
