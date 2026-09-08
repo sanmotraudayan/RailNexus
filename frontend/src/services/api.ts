@@ -26,11 +26,11 @@ export const api = {
   getTrains: () => fetchJSON('/api/trains'),
 
   // Blocks
-  getBlocks: () => fetchJSON('/api/blocks'),
+  getBlocks: (department?: string) => fetchJSON(`/api/blocks${department ? `?department=${encodeURIComponent(department)}` : ''}`),
 
   // Priority
   analyzePriority: (taskId: string) => fetchJSON('/api/priority/analyze', { method: 'POST', body: JSON.stringify({ task_id: taskId }) }),
-  analyzeAllPriorities: () => fetchJSON('/api/priority/analyze-all', { method: 'POST' }),
+  analyzeAllPriorities: (department?: string) => fetchJSON(`/api/priority/analyze-all${department ? `?department=${encodeURIComponent(department)}` : ''}`, { method: 'POST' }),
 
   // Optimization
   runOptimization: (corridor?: string, planType?: string) =>

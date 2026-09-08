@@ -749,7 +749,7 @@
       "deadline": "2026-09-08 20:00",
       "priority_score": 73.0,
       "priority_level": "HIGH",
-      "priority_explanation": "HIGH because the task scores 73.0/100 driven primarily by defect severity (CRITICAL), asset criticality (HIGH), and deadline proximity (23h remaining).",
+      "priority_explanation": "HIGH because the task scores 73.0/100 driven primarily by defect severity (CRITICAL), asset criticality (HIGH), and deadline proximity (11h remaining).",
       "status": "APPROVED",
       "historical_failures": 1,
       "asset_availability_impact": "18%"
@@ -774,7 +774,7 @@
       "deadline": "2026-09-08 20:00",
       "priority_score": 65.2,
       "priority_level": "HIGH",
-      "priority_explanation": "HIGH because the task scores 65.2/100 driven primarily by asset criticality (HIGH), urgency (HIGH), and deadline proximity (23h remaining).",
+      "priority_explanation": "HIGH because the task scores 65.2/100 driven primarily by asset criticality (HIGH), urgency (HIGH), and deadline proximity (11h remaining).",
       "status": "IN_PROGRESS",
       "historical_failures": 1,
       "asset_availability_impact": "11%"
@@ -876,7 +876,7 @@
       "deadline": "2026-09-09 20:00",
       "priority_score": 59.3,
       "priority_level": "MEDIUM",
-      "priority_explanation": "MEDIUM because the task scores 59.3/100 driven primarily by asset criticality (HIGH), deadline proximity (47h remaining), and defect severity (MEDIUM).",
+      "priority_explanation": "MEDIUM because the task scores 59.3/100 driven primarily by asset criticality (HIGH), deadline proximity (35h remaining), and defect severity (MEDIUM).",
       "status": "APPROVED",
       "historical_failures": 3,
       "asset_availability_impact": "17%"
@@ -1004,7 +1004,7 @@
       "deadline": "2026-09-10 20:00",
       "priority_score": 34.0,
       "priority_level": "LOW",
-      "priority_explanation": "LOW because the task scores 34.0/100 driven primarily by deadline proximity (71h remaining), asset criticality (LOW), and defect severity (LOW).",
+      "priority_explanation": "LOW because the task scores 34.0/100 driven primarily by deadline proximity (59h remaining), asset criticality (LOW), and defect severity (LOW).",
       "status": "IN_PROGRESS",
       "historical_failures": 2,
       "asset_availability_impact": "12%"
@@ -1029,7 +1029,7 @@
       "deadline": "2026-09-08 20:00",
       "priority_score": 52.5,
       "priority_level": "MEDIUM",
-      "priority_explanation": "MEDIUM because the task scores 52.5/100 driven primarily by deadline proximity (23h remaining), asset criticality (MEDIUM), and defect severity (MEDIUM).",
+      "priority_explanation": "MEDIUM because the task scores 52.5/100 driven primarily by deadline proximity (11h remaining), asset criticality (MEDIUM), and defect severity (MEDIUM).",
       "status": "SCHEDULED",
       "historical_failures": 2,
       "asset_availability_impact": "15%"
@@ -1105,7 +1105,7 @@
       "deadline": "2026-09-10 20:00",
       "priority_score": 68.6,
       "priority_level": "HIGH",
-      "priority_explanation": "HIGH because the task scores 68.6/100 driven primarily by asset criticality (CRITICAL), urgency (CRITICAL), and deadline proximity (71h remaining).",
+      "priority_explanation": "HIGH because the task scores 68.6/100 driven primarily by asset criticality (CRITICAL), urgency (CRITICAL), and deadline proximity (59h remaining).",
       "status": "APPROVED",
       "historical_failures": 3,
       "asset_availability_impact": "9%"
@@ -1207,7 +1207,7 @@
       "deadline": "2026-09-08 20:00",
       "priority_score": 84.4,
       "priority_level": "CRITICAL",
-      "priority_explanation": "CRITICAL because the task scores 84.4/100 driven primarily by asset criticality (CRITICAL), urgency (CRITICAL), and deadline proximity (23h remaining).",
+      "priority_explanation": "CRITICAL because the task scores 84.4/100 driven primarily by asset criticality (CRITICAL), urgency (CRITICAL), and deadline proximity (11h remaining).",
       "status": "IN_PROGRESS",
       "historical_failures": 5,
       "asset_availability_impact": "11%"
@@ -1258,7 +1258,7 @@
       "deadline": "2026-09-10 20:00",
       "priority_score": 56.9,
       "priority_level": "MEDIUM",
-      "priority_explanation": "MEDIUM because the task scores 56.9/100 driven primarily by defect severity (CRITICAL), asset criticality (MEDIUM), and deadline proximity (71h remaining).",
+      "priority_explanation": "MEDIUM because the task scores 56.9/100 driven primarily by defect severity (CRITICAL), asset criticality (MEDIUM), and deadline proximity (59h remaining).",
       "status": "IN_PROGRESS",
       "historical_failures": 1,
       "asset_availability_impact": "21%"
@@ -1284,7 +1284,7 @@
       "deadline": "2026-09-10 20:00",
       "priority_score": 47.3,
       "priority_level": "MEDIUM",
-      "priority_explanation": "MEDIUM because the task scores 47.3/100 driven primarily by asset criticality (MEDIUM), urgency (MEDIUM), and deadline proximity (71h remaining).",
+      "priority_explanation": "MEDIUM because the task scores 47.3/100 driven primarily by asset criticality (MEDIUM), urgency (MEDIUM), and deadline proximity (59h remaining).",
       "status": "SCHEDULED",
       "historical_failures": 3,
       "asset_availability_impact": "12%"
@@ -1310,7 +1310,7 @@
       "deadline": "2026-09-09 20:00",
       "priority_score": 59.5,
       "priority_level": "MEDIUM",
-      "priority_explanation": "MEDIUM because the task scores 59.5/100 driven primarily by defect severity (CRITICAL), deadline proximity (47h remaining), and asset criticality (MEDIUM).",
+      "priority_explanation": "MEDIUM because the task scores 59.5/100 driven primarily by defect severity (CRITICAL), deadline proximity (35h remaining), and asset criticality (MEDIUM).",
       "status": "SCHEDULED",
       "historical_failures": 2,
       "asset_availability_impact": "13%"
@@ -1362,7 +1362,7 @@
       "deadline": "2026-09-09 20:00",
       "priority_score": 64.1,
       "priority_level": "HIGH",
-      "priority_explanation": "HIGH because the task scores 64.1/100 driven primarily by asset criticality (HIGH), deadline proximity (47h remaining), and defect severity (MEDIUM).",
+      "priority_explanation": "HIGH because the task scores 64.1/100 driven primarily by asset criticality (HIGH), deadline proximity (35h remaining), and defect severity (MEDIUM).",
       "status": "SCHEDULED",
       "historical_failures": 5,
       "asset_availability_impact": "19%"
@@ -1387,7 +1387,7 @@
       "deadline": "2026-09-08 20:00",
       "priority_score": 83.0,
       "priority_level": "CRITICAL",
-      "priority_explanation": "CRITICAL because the task scores 83.0/100 driven primarily by urgency (CRITICAL), asset criticality (HIGH), and deadline proximity (23h remaining).",
+      "priority_explanation": "CRITICAL because the task scores 83.0/100 driven primarily by urgency (CRITICAL), asset criticality (HIGH), and deadline proximity (11h remaining).",
       "status": "SCHEDULED",
       "historical_failures": 5,
       "asset_availability_impact": "23%"
@@ -1412,7 +1412,7 @@
       "deadline": "2026-09-09 20:00",
       "priority_score": 46.4,
       "priority_level": "MEDIUM",
-      "priority_explanation": "MEDIUM because the task scores 46.4/100 driven primarily by defect severity (HIGH), deadline proximity (47h remaining), and urgency (MEDIUM).",
+      "priority_explanation": "MEDIUM because the task scores 46.4/100 driven primarily by defect severity (HIGH), deadline proximity (35h remaining), and urgency (MEDIUM).",
       "status": "SCHEDULED",
       "historical_failures": 0,
       "asset_availability_impact": "6%"
@@ -1539,7 +1539,7 @@
       "deadline": "2026-09-09 20:00",
       "priority_score": 65.3,
       "priority_level": "HIGH",
-      "priority_explanation": "HIGH because the task scores 65.3/100 driven primarily by urgency (CRITICAL), asset criticality (HIGH), and deadline proximity (47h remaining).",
+      "priority_explanation": "HIGH because the task scores 65.3/100 driven primarily by urgency (CRITICAL), asset criticality (HIGH), and deadline proximity (35h remaining).",
       "status": "IN_PROGRESS",
       "historical_failures": 0,
       "asset_availability_impact": "22%"
@@ -1718,7 +1718,7 @@
       "deadline": "2026-09-08 20:00",
       "priority_score": 80.0,
       "priority_level": "CRITICAL",
-      "priority_explanation": "CRITICAL because the task scores 80.0/100 driven primarily by asset criticality (CRITICAL), urgency (CRITICAL), and deadline proximity (23h remaining).",
+      "priority_explanation": "CRITICAL because the task scores 80.0/100 driven primarily by asset criticality (CRITICAL), urgency (CRITICAL), and deadline proximity (11h remaining).",
       "status": "IN_PROGRESS",
       "historical_failures": 0,
       "asset_availability_impact": "25%"
@@ -1819,7 +1819,7 @@
       "deadline": "2026-09-10 20:00",
       "priority_score": 63.2,
       "priority_level": "HIGH",
-      "priority_explanation": "HIGH because the task scores 63.2/100 driven primarily by asset criticality (CRITICAL), defect severity (HIGH), and deadline proximity (71h remaining).",
+      "priority_explanation": "HIGH because the task scores 63.2/100 driven primarily by asset criticality (CRITICAL), defect severity (HIGH), and deadline proximity (59h remaining).",
       "status": "PENDING",
       "historical_failures": 3,
       "asset_availability_impact": "8%"
@@ -2176,7 +2176,7 @@
       "deadline": "2026-09-08 20:00",
       "priority_score": 65.9,
       "priority_level": "HIGH",
-      "priority_explanation": "HIGH because the task scores 65.9/100 driven primarily by urgency (CRITICAL), deadline proximity (23h remaining), and asset criticality (MEDIUM).",
+      "priority_explanation": "HIGH because the task scores 65.9/100 driven primarily by urgency (CRITICAL), deadline proximity (11h remaining), and asset criticality (MEDIUM).",
       "status": "IN_PROGRESS",
       "historical_failures": 2,
       "asset_availability_impact": "11%"
@@ -2641,7 +2641,11 @@
       "duration": 4.0,
       "availability": "OCCUPIED",
       "existing_tasks": [],
-      "train_conflict": false
+      "train_conflict": false,
+      "departments": [
+        "Engineering",
+        "Traction"
+      ]
     },
     {
       "id": "BLK-002",
@@ -2653,7 +2657,10 @@
       "duration": 3.0,
       "availability": "PARTIALLY_AVAILABLE",
       "existing_tasks": [],
-      "train_conflict": false
+      "train_conflict": false,
+      "departments": [
+        "Traction"
+      ]
     },
     {
       "id": "BLK-003",
@@ -2665,7 +2672,11 @@
       "duration": 4.0,
       "availability": "OCCUPIED",
       "existing_tasks": [],
-      "train_conflict": false
+      "train_conflict": false,
+      "departments": [
+        "Engineering",
+        "S&T"
+      ]
     },
     {
       "id": "BLK-004",
@@ -2677,7 +2688,10 @@
       "duration": 3.0,
       "availability": "PARTIALLY_AVAILABLE",
       "existing_tasks": [],
-      "train_conflict": false
+      "train_conflict": false,
+      "departments": [
+        "Engineering"
+      ]
     },
     {
       "id": "BLK-005",
@@ -2689,7 +2703,10 @@
       "duration": 3.0,
       "availability": "AVAILABLE",
       "existing_tasks": [],
-      "train_conflict": false
+      "train_conflict": false,
+      "departments": [
+        "Engineering"
+      ]
     },
     {
       "id": "BLK-006",
@@ -2701,7 +2718,11 @@
       "duration": 4.0,
       "availability": "PARTIALLY_AVAILABLE",
       "existing_tasks": [],
-      "train_conflict": false
+      "train_conflict": false,
+      "departments": [
+        "S&T",
+        "Traction"
+      ]
     },
     {
       "id": "BLK-007",
@@ -2713,7 +2734,10 @@
       "duration": 2.0,
       "availability": "AVAILABLE",
       "existing_tasks": [],
-      "train_conflict": false
+      "train_conflict": false,
+      "departments": [
+        "Engineering"
+      ]
     },
     {
       "id": "BLK-008",
@@ -2725,7 +2749,10 @@
       "duration": 4.0,
       "availability": "PARTIALLY_AVAILABLE",
       "existing_tasks": [],
-      "train_conflict": false
+      "train_conflict": false,
+      "departments": [
+        "Traction"
+      ]
     },
     {
       "id": "BLK-009",
@@ -2737,7 +2764,10 @@
       "duration": 2.0,
       "availability": "AVAILABLE",
       "existing_tasks": [],
-      "train_conflict": false
+      "train_conflict": false,
+      "departments": [
+        "S&T"
+      ]
     },
     {
       "id": "BLK-010",
@@ -2749,7 +2779,11 @@
       "duration": 2.0,
       "availability": "OCCUPIED",
       "existing_tasks": [],
-      "train_conflict": false
+      "train_conflict": false,
+      "departments": [
+        "Engineering",
+        "S&T"
+      ]
     },
     {
       "id": "BLK-011",
@@ -2761,7 +2795,11 @@
       "duration": 4.0,
       "availability": "OCCUPIED",
       "existing_tasks": [],
-      "train_conflict": false
+      "train_conflict": false,
+      "departments": [
+        "Traction",
+        "S&T"
+      ]
     },
     {
       "id": "BLK-012",
@@ -2773,7 +2811,12 @@
       "duration": 3.0,
       "availability": "AVAILABLE",
       "existing_tasks": [],
-      "train_conflict": false
+      "train_conflict": false,
+      "departments": [
+        "Engineering",
+        "Traction",
+        "S&T"
+      ]
     },
     {
       "id": "BLK-013",
@@ -2785,7 +2828,10 @@
       "duration": 4.0,
       "availability": "AVAILABLE",
       "existing_tasks": [],
-      "train_conflict": false
+      "train_conflict": false,
+      "departments": [
+        "S&T"
+      ]
     },
     {
       "id": "BLK-014",
@@ -2797,7 +2843,10 @@
       "duration": 2.0,
       "availability": "AVAILABLE",
       "existing_tasks": [],
-      "train_conflict": false
+      "train_conflict": false,
+      "departments": [
+        "Engineering"
+      ]
     },
     {
       "id": "BLK-015",
@@ -2809,7 +2858,10 @@
       "duration": 3.0,
       "availability": "OCCUPIED",
       "existing_tasks": [],
-      "train_conflict": false
+      "train_conflict": false,
+      "departments": [
+        "Traction"
+      ]
     },
     {
       "id": "BLK-016",
@@ -2821,7 +2873,10 @@
       "duration": 3.0,
       "availability": "OCCUPIED",
       "existing_tasks": [],
-      "train_conflict": false
+      "train_conflict": false,
+      "departments": [
+        "S&T"
+      ]
     },
     {
       "id": "BLK-017",
@@ -2833,7 +2888,11 @@
       "duration": 4.0,
       "availability": "PARTIALLY_AVAILABLE",
       "existing_tasks": [],
-      "train_conflict": false
+      "train_conflict": false,
+      "departments": [
+        "S&T",
+        "Traction"
+      ]
     },
     {
       "id": "BLK-018",
@@ -2845,7 +2904,12 @@
       "duration": 2.0,
       "availability": "OCCUPIED",
       "existing_tasks": [],
-      "train_conflict": false
+      "train_conflict": false,
+      "departments": [
+        "Engineering",
+        "Traction",
+        "S&T"
+      ]
     },
     {
       "id": "BLK-019",
@@ -2857,7 +2921,11 @@
       "duration": 4.0,
       "availability": "OCCUPIED",
       "existing_tasks": [],
-      "train_conflict": false
+      "train_conflict": false,
+      "departments": [
+        "Engineering",
+        "Traction"
+      ]
     },
     {
       "id": "BLK-020",
@@ -2869,7 +2937,10 @@
       "duration": 4.0,
       "availability": "PARTIALLY_AVAILABLE",
       "existing_tasks": [],
-      "train_conflict": false
+      "train_conflict": false,
+      "departments": [
+        "Engineering"
+      ]
     }
   ],
   "notifications": [
@@ -2899,6 +2970,106 @@
     }
   ],
   "audit_logs": [
+    {
+      "id": "AUD-0039",
+      "timestamp": "2026-09-08 08:54:44",
+      "user": "AI Engine",
+      "role": "SYSTEM",
+      "action": "PRIORITY_ANALYSIS_ALL",
+      "module": "PRIORITY",
+      "entity_id": "ALL",
+      "description": "Analyzed priorities for 60 tasks"
+    },
+    {
+      "id": "AUD-0038",
+      "timestamp": "2026-09-08 08:54:29",
+      "user": "AI Engine",
+      "role": "SYSTEM",
+      "action": "PRIORITY_ANALYSIS_ALL",
+      "module": "PRIORITY",
+      "entity_id": "Engineering",
+      "description": "Analyzed priorities for 18 tasks"
+    },
+    {
+      "id": "AUD-0037",
+      "timestamp": "2026-09-08 08:53:04",
+      "user": "AI Engine",
+      "role": "SYSTEM",
+      "action": "PRIORITY_ANALYSIS_ALL",
+      "module": "PRIORITY",
+      "entity_id": "Engineering",
+      "description": "Analyzed priorities for 18 tasks"
+    },
+    {
+      "id": "AUD-0036",
+      "timestamp": "2026-09-08 08:53:03",
+      "user": "AI Engine",
+      "role": "SYSTEM",
+      "action": "PRIORITY_ANALYSIS_ALL",
+      "module": "PRIORITY",
+      "entity_id": "Engineering",
+      "description": "Analyzed priorities for 18 tasks"
+    },
+    {
+      "id": "AUD-0035",
+      "timestamp": "2026-09-08 08:53:01",
+      "user": "AI Engine",
+      "role": "SYSTEM",
+      "action": "PRIORITY_ANALYSIS_ALL",
+      "module": "PRIORITY",
+      "entity_id": "Engineering",
+      "description": "Analyzed priorities for 18 tasks"
+    },
+    {
+      "id": "AUD-0034",
+      "timestamp": "2026-09-08 08:53:01",
+      "user": "AI Engine",
+      "role": "SYSTEM",
+      "action": "PRIORITY_ANALYSIS_ALL",
+      "module": "PRIORITY",
+      "entity_id": "Engineering",
+      "description": "Analyzed priorities for 18 tasks"
+    },
+    {
+      "id": "AUD-0033",
+      "timestamp": "2026-09-08 08:50:35",
+      "user": "AI Engine",
+      "role": "SYSTEM",
+      "action": "PRIORITY_ANALYSIS_ALL",
+      "module": "PRIORITY",
+      "entity_id": "S&T",
+      "description": "Analyzed priorities for 27 tasks"
+    },
+    {
+      "id": "AUD-0032",
+      "timestamp": "2026-09-08 08:50:35",
+      "user": "AI Engine",
+      "role": "SYSTEM",
+      "action": "PRIORITY_ANALYSIS_ALL",
+      "module": "PRIORITY",
+      "entity_id": "Traction",
+      "description": "Analyzed priorities for 15 tasks"
+    },
+    {
+      "id": "AUD-0031",
+      "timestamp": "2026-09-08 08:50:35",
+      "user": "AI Engine",
+      "role": "SYSTEM",
+      "action": "PRIORITY_ANALYSIS_ALL",
+      "module": "PRIORITY",
+      "entity_id": "Engineering",
+      "description": "Analyzed priorities for 18 tasks"
+    },
+    {
+      "id": "AUD-0030",
+      "timestamp": "2026-09-08 08:48:57",
+      "user": "AI Engine",
+      "role": "SYSTEM",
+      "action": "PRIORITY_ANALYSIS_ALL",
+      "module": "PRIORITY",
+      "entity_id": "ALL",
+      "description": "Analyzed priorities for 60 tasks"
+    },
     {
       "id": "AUD-0029",
       "timestamp": "2026-09-07 20:46:46",

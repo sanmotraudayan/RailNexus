@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { api } from '../services/api';
 import { StatusBadge, PageHeader, ProtoLabel } from './Dashboard';
 import { useAuth } from '../context/AuthContext';
@@ -6,7 +6,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { Cpu, AlertTriangle } from 'lucide-react';
 
 interface PriorityResult {
-  task_id: string; priority_score: number; priority_level: string;
+  task_id: string; title?: string; department?: string; corridor?: string; priority_score: number; priority_level: string;
   priority_reason: string; contributing_factors: Record<string, { value: string; score: number; weight: number }>;
 }
 
@@ -15,13 +15,35 @@ export default function Priority() {
   const { t } = useLanguage();
   const [results, setResults] = useState<PriorityResult[]>([]);
   const [loading, setLoading] = useState(false);
+  const [hasRun, setHasRun] = useState(false);
   const [selected, setSelected] = useState<PriorityResult | null>(null);
 
-  const runAll = () => {
+  const initialDept = (user?.role === 'engineering' || user?.role === 'traction' || user?.role === 's_and_t') ? (user?.department || '') : '';
+  const [filterDept, setFilterDept] = useState(initialDept);
+
+  const fetchPriorities = useCallback((dept?: string) => {
     setLoading(true);
-    api.analyzeAllPriorities()
-      .then(d => { setResults(d.results || []); setLoading(false); })
-      .catch(() => setLoading(false));
+    api.analyzeAllPriorities(dept || undefined)
+      .then(d => {
+        setResults(d.results || []);
+        setLoading(false);
+        setHasRun(true);
+      })
+      .catch(() => {
+        setLoading(false);
+        setHasRun(true);
+      });
+  }, []);
+
+  const handleDeptChange = (dept: string) => {
+    setFilterDept(dept);
+    if (hasRun) {
+      fetchPriorities(dept);
+    }
+  };
+
+  const runAll = () => {
+    fetchPriorities(filterDept);
   };
 
   return (
@@ -33,15 +55,36 @@ export default function Priority() {
           className="flex items-center gap-2 px-4 py-2 bg-navy-700 text-white text-[13px] font-medium hover:bg-navy-900 disabled:opacity-50 transition-colors">
           <Cpu size={16} /> {loading ? t('Analyzing...') : t('Run priority analysis')}
         </button>
-        {results.length > 0 && <span className="text-[12px] text-grey-600">{results.length} {t('tasks analyzed')}</span>}
+
+        <select value={filterDept} onChange={e => handleDeptChange(e.target.value)}
+          className="border border-grey-300 px-3 py-2 text-[13px] focus:outline-none focus:ring-2 focus:ring-blue-600 bg-white">
+          <option value="">{t('All departments') || 'All departments'}</option>
+          <option value="Engineering">Engineering</option>
+          <option value="Traction">Traction</option>
+          <option value="S&T">S&T</option>
+        </select>
+
+        {hasRun && <span className="text-[12px] text-grey-600">{results.length} {t('tasks analyzed')}</span>}
       </div>
 
-      {results.length > 0 && (
+      {!hasRun ? (
+        <div className="bg-white border border-grey-300 p-12 text-center text-[13px] text-grey-600 space-y-2">
+          <Cpu size={32} className="mx-auto text-grey-400 mb-2" />
+          <p className="font-semibold text-navy-900 text-[14px]">Priority Analysis Ready</p>
+          <p className="text-grey-600 text-[13px]">Click <strong className="text-navy-900">Run priority analysis</strong> above to calculate AI priority scores for maintenance tasks.</p>
+        </div>
+      ) : loading ? (
+        <div className="bg-white border border-grey-300 p-8 text-center text-[13px] text-grey-600">
+          Analyzing maintenance tasks...
+        </div>
+      ) : results.length > 0 ? (
         <div className="bg-white border border-grey-300 overflow-auto">
           <table className="w-full text-[13px]">
             <thead className="sticky top-0">
               <tr className="bg-navy-900 text-white text-[12px] font-semibold">
                 <th className="px-3 py-2 text-left">{t('Task ID')}</th>
+                <th className="px-3 py-2 text-left">{t('Title') || 'Title'}</th>
+                <th className="px-3 py-2 text-left">{t('Department') || 'Department'}</th>
                 <th className="px-3 py-2 text-left">{t('Priority level')}</th>
                 <th className="px-3 py-2 text-left">{t('Score')}</th>
                 <th className="px-3 py-2 text-left">{t('Explanation')}</th>
@@ -52,13 +95,19 @@ export default function Priority() {
                 <tr key={r.task_id} className={`${i % 2 === 0 ? 'bg-white' : 'bg-grey-50'} hover:bg-info-100 cursor-pointer`}
                     onClick={() => setSelected(r)} style={{ height: '40px' }}>
                   <td className="px-3 py-2 font-medium text-blue-600">{r.task_id}</td>
+                  <td className="px-3 py-2 max-w-[200px] truncate font-medium">{r.title || '-'}</td>
+                  <td className="px-3 py-2 text-[12px]">{r.department || '-'}</td>
                   <td className="px-3 py-2"><StatusBadge status={r.priority_level} /></td>
                   <td className="px-3 py-2 font-bold" style={{ fontVariantNumeric: 'tabular-nums' }}>{r.priority_score}</td>
-                  <td className="px-3 py-2 text-[12px] max-w-[500px] truncate">{r.priority_reason}</td>
+                  <td className="px-3 py-2 text-[12px] max-w-[400px] truncate">{r.priority_reason}</td>
                 </tr>
               ))}
             </tbody>
           </table>
+        </div>
+      ) : (
+        <div className="bg-white border border-grey-300 p-8 text-center text-[13px] text-grey-600">
+          No tasks found for priority analysis in the selected department.
         </div>
       )}
 
@@ -70,6 +119,13 @@ export default function Priority() {
               <button onClick={() => setSelected(null)} className="text-white hover:text-grey-300">&times;</button>
             </div>
             <div className="p-4 space-y-3 text-[13px]">
+              {selected.title && <div className="font-bold text-[14px] text-navy-900">{selected.title}</div>}
+              {selected.department && (
+                <div className="text-[12px] text-grey-600">
+                  Department: <span className="font-medium text-black">{selected.department}</span>
+                  {selected.corridor && <> | Corridor: <span className="font-medium text-black">{selected.corridor}</span></>}
+                </div>
+              )}
               <div className="flex items-center gap-2 mb-2">
                 <StatusBadge status={selected.priority_level} />
                 <span className="font-bold" style={{ fontVariantNumeric: 'tabular-nums' }}>{t('Score')}: {selected.priority_score}/100</span>

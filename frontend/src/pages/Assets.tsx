@@ -14,19 +14,20 @@ export default function Assets() {
   const { user } = useAuth();
   const [assets, setAssets] = useState<Asset[]>([]);
   const [search, setSearch] = useState('');
-  const [filterDept, setFilterDept] = useState('');
+  const initialDept = (user?.role === 'engineering' || user?.role === 'traction' || user?.role === 's_and_t') ? (user?.department || '') : '';
+  const [filterDept, setFilterDept] = useState(initialDept);
   const [selected, setSelected] = useState<Asset | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const dept = (user?.role === 'engineering' || user?.role === 'traction' || user?.role === 's_and_t') ? user?.department : undefined;
-    api.getAssets(dept).then(d => { setAssets(Array.isArray(d) ? d : []); setLoading(false); })
+    setLoading(true);
+    api.getAssets(filterDept || undefined)
+      .then(d => { setAssets(Array.isArray(d) ? d : []); setLoading(false); })
       .catch(() => setLoading(false));
-  }, [user]);
+  }, [filterDept]);
 
   const filtered = assets.filter(a => {
     if (search && !a.name.toLowerCase().includes(search.toLowerCase()) && !a.id.toLowerCase().includes(search.toLowerCase())) return false;
-    if (filterDept && a.department !== filterDept) return false;
     return true;
   });
 

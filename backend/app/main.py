@@ -195,8 +195,25 @@ def get_trains():
 
 # ── Blocks ──
 @app.get("/api/blocks")
-def get_blocks():
-    return DB["blocks"]
+def get_blocks(department: str | None = None):
+    plans = DB.get("plans", [])
+    plan_map = {p.get("block_id"): p for p in plans if p.get("block_id")}
+    
+    result = []
+    for b in DB["blocks"]:
+        block_copy = dict(b)
+        p = plan_map.get(b["id"])
+        depts = block_copy.get("departments") or (p.get("departments") if p else ["Engineering"])
+        block_copy["departments"] = depts
+        block_copy["assigned_tasks"] = (p.get("tasks") if p else []) or block_copy.get("existing_tasks", [])
+        
+        if department:
+            if any(d.lower() == department.lower() for d in depts):
+                result.append(block_copy)
+        else:
+            result.append(block_copy)
+            
+    return result
 
 @app.get("/api/blocks/{block_id}")
 def get_block(block_id: str):
@@ -214,6 +231,9 @@ def analyze_priority(payload: dict):
 
     from app.services.priority_engine import compute_priority
     result = compute_priority(task)
+    result["title"] = task.get("title", "")
+    result["department"] = task.get("department", "")
+    result["corridor"] = task.get("corridor", "")
     
     # Update task in DB
     for i, t in enumerate(DB["maintenance_tasks"]):
@@ -227,16 +247,23 @@ def analyze_priority(payload: dict):
     return result
 
 @app.post("/api/priority/analyze-all")
-def analyze_all_priorities():
+def analyze_all_priorities(department: str | None = None):
     from app.services.priority_engine import compute_priority
     results = []
     for i, task in enumerate(DB["maintenance_tasks"]):
         result = compute_priority(task)
+        result["title"] = task.get("title", "")
+        result["department"] = task.get("department", "")
+        result["corridor"] = task.get("corridor", "")
+        
         DB["maintenance_tasks"][i]["priority_score"] = result["priority_score"]
         DB["maintenance_tasks"][i]["priority_level"] = result["priority_level"]
         DB["maintenance_tasks"][i]["priority_explanation"] = result["priority_reason"]
-        results.append(result)
-    log_audit_event("AI Engine", "SYSTEM", "PRIORITY_ANALYSIS_ALL", "PRIORITY", "ALL", f"Analyzed priorities for {len(results)} tasks")
+        
+        if not department or task.get("department", "").lower() == department.lower():
+            results.append(result)
+            
+    log_audit_event("AI Engine", "SYSTEM", "PRIORITY_ANALYSIS_ALL", "PRIORITY", department or "ALL", f"Analyzed priorities for {len(results)} tasks")
     save_db()
     return {"count": len(results), "results": results}
 
